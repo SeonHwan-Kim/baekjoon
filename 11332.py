@@ -36,33 +36,3 @@ for i in range(int(input())):
 
 for i in range(len(result)):
     print(result[i])
-
-# def o_n(N, T, L):
-#     if(N * T <= L * 10 ** 8):
-#         result.append("May pass.")
-#     else:
-#         result.append("TLE!")
-
-# def o_n_2(N, T, L):
-#     if(N ** 2 * T <= L * 10 ** 8):
-#         result.append("May pass.")
-#     else:
-#         result.append("TLE!")
-
-# def o_n_3(N, T, L):
-#     if(N ** 3 * T <= L * 10 ** 8):
-#         result.append("May pass.")
-#     else:
-#         result.append("TLE!")
-
-# def o_2_n(N, T, L):
-#     if(2 ** N * T <= L * 10 ** 8):
-#         result.append("May pass.")
-#     else:
-#         result.append("TLE!")
-
-# def o_n_factorial(N, T, L):
-#     if(factorial(N) * T <= L * 10 ** 8):
-#         result.append("May pass.")
-#     else:
-#         result.append("TLE!")
