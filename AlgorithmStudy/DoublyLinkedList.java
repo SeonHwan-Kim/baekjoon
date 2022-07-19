@@ -1,19 +1,5 @@
 package AlgorithmStudy;
 
-import java.util.Scanner;
-
-public class PopingBalloon{
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int N = scanner.nextInt();
-        for(int i = 0; i < N; i++){
-
-        }
-
-        scanner.close();
-    }
-}
-
 class Node<E>{
     Node(){
     }
@@ -46,11 +32,23 @@ class DoublyLinkedList<E>{
             tailNode.next.prev = tailNode;
             tailNode = tailNode.next;
             tailNode.next = firstNode;
-            size += 1;
+            size++;
         }
     }
 
-    private Node<E> get(int index){
+    void remove(Object o){
+        
+    }
+    
+    boolean contains(Object value){
+        return indexOf(value) >= 0;
+    }
+
+    int size(){
+
+    }
+
+    Node<E> search(int index){
         if(index > size / 2){
             Node<E> x = tailNode;
             for(int i = size - 1; i > index; i--){
@@ -65,7 +63,25 @@ class DoublyLinkedList<E>{
             }
             return x;
         }
+    }2
+    
+    E set(int index, E elements){
+
     }
     
+    boolean isEmpty(){
 
+    }
+
+    boolean equals(Object o){
+
+    }
+
+    int indexOf(Object o){
+
+    }
+
+    void clear(){
+
+    }
 }
