@@ -25,6 +25,8 @@ class DoublyLinkedList<E>{
     void add(E data){
         if(firstNode == null){
             firstNode = tailNode = new Node<E>(data);
+            firstNode.next = firstNode;
+            firstNode.prev = firstNode;
             size += 1;
         }
         else{
@@ -39,34 +41,52 @@ class DoublyLinkedList<E>{
 
     boolean remove(Object o){
         Node<E> findNode = firstNode;
-        for(int i = 0;i < size; findNode = findNode.next){
+    
+        if(isEmpty()){
+            return false;
+        }
+
+        for(int i = 0;i < size; i++, findNode = findNode.next){
             if(o.equals(findNode.data)){
                 break;
             }
         }
 
-        if(findNode == null){
-            return false;
+        if(findNode.next == firstNode){
+            findNode.data = null;
+            findNode.next = null;
+            findNode.prev = null;
+            size--;
+            return true;
         }
         else{
+            if(findNode == firstNode){
+                findNode.prev.next = findNode.next;
+                findNode.next.prev = findNode.prev;
+                firstNode = findNode.next;
+                findNode.data = null;
+                findNode.next = null;
+                findNode.prev = null;
+                size--;
+                return true;
+            }
             findNode.prev.next = findNode.next;
             findNode.next.prev = findNode.prev;
             findNode.data = null;
             findNode.next = null;
             findNode.prev = null;
+            size--;
+            return true;
         }
-        size--;
-        return true;
-
     }
     
-    // boolean contains(Object value){
-    //     return indexOf(value) >= 0;
-    // }
+    boolean contains(Object value){
+        return indexOf(value) >= 0;
+    }
 
-    // int size(){
-
-    // }
+    int size(){
+        return size;
+    }
 
     Node<E> search(int index){
         if(index > size / 2){
@@ -84,42 +104,82 @@ class DoublyLinkedList<E>{
             return x;
         }
     }
+
+    E get(int index){
+        return search(index).data;
+    }
     
-//     E set(int index, E elements){
-
-//     }
+    E set(int index, E elements){
+        Node<E> replaceNode = search(index);
+        replaceNode.data = elements;
+        return elements;
+    }
     
-//     boolean isEmpty(){
+    boolean isEmpty(){
+        return size == 0;
+    }
 
-//     }
+    // boolean equals(Object o){
+        
+    // }
 
-//     boolean equals(Object o){
+    int indexOf(Object o){
+        if(!isEmpty()){
+            int index = 0;
+            for(Node<E> findNode = firstNode; findNode.next != firstNode; findNode = findNode.next){
+                if(o.equals(findNode.data)){
+                    return index;
+                } 
+                index++; 
+            }
+            return index;
+        }
+        return -1;
+    }
 
-//     }
-
-//     int indexOf(Object o){
-
-//     }
-
-//     void clear(){
-
-//     }
+    void clear(){
+        for(Node<E> x = firstNode; x != null;){
+            Node<E> nextNode = x.next;
+            x.data = null;
+            x.next = null;
+            x.prev = null;
+            x = nextNode;
+        }
+        firstNode = null;
+        tailNode = null;
+        size = 0;
+    }
     void show() {
-        Node<E> temp = firstNode;
-        do {
-            System.out.println(temp.data);
-            temp = temp.next;
-        } while (temp != firstNode);
+        if(isEmpty()){
+            System.out.println("empty");
+        }
+        else{
+            Node<E> curNode = firstNode;
+            do {
+                System.out.println(curNode.data);
+                curNode = curNode.next;
+            } while (curNode != firstNode);
+        }
     }
 }
 
 
 public class DoublyLinkedListMain{
     public static void main(String[] args) {
-        DoublyLinkedList<Integer> v = new DoublyLinkedList<>();
-        v.add(4);
-        v.add(3);
-        v.remove(4);
-        v.show();
+        DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
+        dll.add(4);
+        dll.add(3);
+        dll.remove(4);
+        dll.add(10);
+        dll.add(13);
+        System.out.println(dll.size());
+        System.out.println(dll.indexOf(3));
+        System.out.println(dll.contains(3));
+        dll.show();
+        System.out.println(dll.get(2));
+        dll.set(2, 9);
+        System.out.println(dll.get(2));
+        dll.clear();
+        dll.show();
     }
 }
