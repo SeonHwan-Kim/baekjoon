@@ -24,18 +24,18 @@ for i in range(N):
     elif command[0] == "size":
         result.append(len(dq))
     elif command[0] == "empty":
-        if len(dq) == 0:
-            result.append("1")
-        else:
+        if dq:
             result.append("0")
+        else:
+            result.append("1")
     elif command[0] == "front":
         if len(dq) == 0:
-            result.append("1")
+            result.append("-1")
         else:
             result.append(dq[0])
     elif command[0] == "back":
         if len(dq) == 0:
-            result.append("1")
+            result.append("-1")
         else:
             result.append(dq[len(dq) - 1])
 print("\n".join(map(str, result)))
