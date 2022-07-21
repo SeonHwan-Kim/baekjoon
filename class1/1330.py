@@ -29,4 +29,5 @@
 #     except:
 #         break
 
-print(ord(input()))
+# print(ord(input()))
+
