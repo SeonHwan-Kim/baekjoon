@@ -37,17 +37,6 @@ void BinaryTree::AddNode(int studentNumber, int studentScore)
     }
 }
 
-// bool BinaryTree::GetData(Node *node, int &data)
-// {
-//     if (node == NULL)
-//     {
-//         return false;
-//     }
-
-//     cout << "GetData : " << data << endl;
-//     return true;
-// }
-
 void BinaryTree::PreorderPrint()
 {
     PreorderPrint(headNode);
@@ -63,7 +52,3 @@ void BinaryTree::PreorderPrint(Node *node)
     PreorderPrint(node->left);
     PreorderPrint(node->right);
 }
-
-// void BinaryTree::RemoveNode()
-// {
-// }
