@@ -10,3 +10,5 @@ for i in range(T):
             next_floor.append(sum(new_floor[:k + 1]))
         new_floor = next_floor.copy()
     print(new_floor[-1])
+
+# test
